@@ -15,6 +15,11 @@ body {
     left: 0;
     top: 0;
     font-size: 14px;
+    background-image: url('../images/kl_.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 header {
@@ -36,21 +41,20 @@ header {
 
 #cities {
 	width: 200px;
+	margin-left: 5px;
     padding: 5px 10px;
     border: 0;
 }
 
 .content {
 	//background-color: #333;
-	color: #fff;
-	background-image: url('../images/kl.jpg');
-    background-size: cover;
+	color: #fff;	
 	width: 100%;
 	display: -webkit-flex;
     display: flex;
-	-webkit-flex-direction: row;
-    flex-direction: row;
-    padding: 20px;
+	-webkit-flex-direction: column;
+    flex-direction: column;
+    padding: 40px 20px;
     -webkit-justify-content: space-between;
     justify-content: space-between;
 }
@@ -75,7 +79,7 @@ ul {
 }
 
 #units div {
-	margin-right: 10px;
+	
 }
 
 #units ul {
@@ -84,10 +88,23 @@ ul {
 
 #units ul li{
 	float: left;
+	margin-left: 10px;
 }
 
 .current_data {
-	
+	justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+#current_condition img {
+	height: 24px;
+    float: left;
+    margin-right: 5px;
 }
 
 #current_time {
@@ -113,11 +130,12 @@ ul {
 }
 
 .future_data {
-	color: #444;
+	color: #333;
+	margin-top: 20px
 }
 
 .future_data ul {
-	width: 400px;
+	width: 100%;
 	height: auto;
 	margin: 0;
 	padding: 0;
@@ -136,6 +154,7 @@ ul {
 
 .future_data ul li.title {
 	padding: 10px;
+	font-weight: bold;
 	text-align: center;
 	background: rgba(255,255,255,0.7);
 }
@@ -152,6 +171,33 @@ ul {
 .future_data ul li ul li{
 	padding: 15px;
 
+}
+
+.future_data ul li ul li img {
+	height: 20px;
+	float: left;
+}
+
+.details {
+	display: -webkit-flex;
+   	display: flex;
+  	-webkit-flex-direction: row;
+   	flex-direction: row;
+   	-webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+    padding: 10px;
+    background: #5C423D;
+    color: #fff;
+}
+
+.details ul{
+	margin: 0;
+}
+.details ul li{
+	float: left;
+	margin-left: 15px;
 }
 
 footer {
@@ -183,7 +229,7 @@ footer {
 		margin: 0;
 	}
 
-	.content {
+	/*.content {
 		-webkit-flex-direction: column;
     	flex-direction: column;
 	}
@@ -196,23 +242,27 @@ footer {
 	    display: -webkit-flex;
 	    flex-direction: column;
 	    -webkit-flex-direction: column;
-	}
+	}*/
 
 	#current_temp_range {
 		margin-bottom: 20px;
 	}
 
-	.future_data{
+	/*.future_data{
 		margin-top: 20px;
 	}
 
 	.future_data ul{
 		width: 100%;
-	}
+	}*/
 
 }
 
 @media only screen and (max-width: 550px) {
+	body {
+		background-size: auto;
+	}
+
 	#cities {
 		width: 150px;
 	}
@@ -248,8 +298,8 @@ footer {
 	#units ul{
 		display: none;
 		position: absolute;
-	    right: 10px;
-	    width: 120px;
+	    right: 0;
+	    width: 130px;
 	    color: #666;
 	    background: rgba(255,255,255,0.8);
 	}
