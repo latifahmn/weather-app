@@ -33,25 +33,27 @@
 			<div><i class="fa fa-cog"></i> Unit<span>: </span></div>
 
 			<ul>
-				<li><input name="radio" type="radio" checked id="celcius" ng-model="temp.unit" value="C" ng-change="updateTemp(temp.unit)" />
+				<li><input class="radio" name="radio" type="radio" checked id="celcius" ng-model="temp.unit" value="C" ng-change="updateTemp(temp.unit)" >
 				<label for="celcius">Celcius</label></li>
 
-				<li><input name="radio" type="radio" id="fahrenheit" ng-model="temp.unit" ng-change="updateTemp(temp.unit)" value="F" />
+				<li><input class="radio" name="radio" type="radio" id="fahrenheit" ng-model="temp.unit" ng-change="updateTemp(temp.unit)" value="F" >
 				<label for="fahrenheit">Fahrenheit</label></li>
 			</ul>
 		</div>
 
 	</header>
 
+	<div class="overlay"></div>
+
 	<div class="content">
 
 		<div class="current_data">
 
-			<div id="current_time">{{weatherData.item.condition.date}}</div><br/>	
+			<div id="current_time">{{weatherData.item.forecast[0].day}}, {{weatherData.item.forecast[0].date}}</div>
 
 			<div id="current_condition"><img ng-src="images/{{weatherData.item.condition.img}}.svg" alt="Thunderstorm" /> {{weatherData.item.condition.text}}</div>
 
-			<div id="current_temp"><span>{{weatherData.item.condition.temp}}</span> &deg;<span>{{temp.unit}}</span></div>
+			<div id="current_temp"><span>{{weatherData.item.condition.temp}}</span> <span>&deg;{{temp.unit}}</span></div>
 
 			<ul id="current_temp_range">
 				<li><i class="fa fa-long-arrow-up"></i> <span>{{weatherData.item.forecast[0].high}}</span> &deg;<span>{{temp.unit}}</span></li>
@@ -76,7 +78,7 @@
 						<li><i class="fa fa-long-arrow-up"></i> <span>{{f.high}}</span> &deg;<span>{{temp.unit}}</span></li>
 						<li><i class="fa fa-long-arrow-down"></i> <span>{{f.low}}</span> &deg;<span>{{temp.unit}}</span></li>
 
-						<li><img ng-src="images/{{f.img_name}}_.svg" alt="{{f.text}}" />{{f.text}}</li>					
+						<li><img ng-src="images/{{f.img_name}}_.svg" alt="{{f.text}}" /><span>{{f.text}}</span></li>					
 					</ul>
 				</li>
 				
@@ -86,8 +88,8 @@
 	</div>
 
 	<footer>
-		<span>&copy; 2017 Latifah Mat Nen </span>
-		<a class="yahoo_attr" href="{{weatherData.link}}" target="_blank"> <img src="images/yahoo_purple_retina.png" width="134" height="29"/> </a> 
+		<span><i class="fa fa-github"></i> &copy; 2017 Latifah Mat Nen </span>
+		<a class="yahoo_attr" href="{{weatherData.link}}" target="_blank"> <img src="images/yahoo_white_retina.png" width="134" height="29"/> </a> 
 	</footer>
 
 </body>
