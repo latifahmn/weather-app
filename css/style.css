@@ -14,12 +14,13 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    font-size: 14px;
+    font-size: 16px;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     -webkit-transition: background-image 2s; 
+    -moz-transition: background-image 2s; 
     transition: background-image 2s;
 }
 
@@ -27,6 +28,7 @@ header {
 	background-color: #404040;
 	color: #fff;
 	width: 100%;
+	font-size: 14px;
 	padding: 15px 20px;
 	display: -webkit-flex;
     display: flex;
@@ -38,11 +40,12 @@ header {
 }
 
 #city_div {
-
+	flex: 2 0 0;
+	-webkit-flex: 2 0 0;
 }
 
 #cities {
-	width: 200px;
+	width: 70%;
 	margin-left: 5px;
     padding: 5px 10px;
     border: 0;    
@@ -116,7 +119,7 @@ header {
 ul {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 32px 0;
+	margin: 0;
 }
 
 #units {
@@ -163,7 +166,7 @@ ul {
 
 #current_time {
 	font-size: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 1em;
 }
 
 #current_temp span:first-child{
@@ -173,6 +176,10 @@ ul {
 #current_temp span:last-child{
 	float: right;
     font-size: 40px;
+}
+
+#current_temp_range {
+	margin-bottom: 2em;
 }
 
 #current_temp_range li, #sun_key_time li{
@@ -302,6 +309,7 @@ footer {
 @media only screen and (max-width: 550px) {
 	body {
 		background-size: auto;
+		font-size: 14px;
 	}
 
 	#cities {
