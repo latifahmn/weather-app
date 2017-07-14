@@ -15,7 +15,6 @@ body {
     left: 0;
     top: 0;
     font-size: 14px;
-    background-image: url('../images/kl_.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -176,6 +175,7 @@ ul {
 .future_data ul li ul li img {
 	height: 20px;
 	float: left;
+	margin-right: 10px;
 }
 
 .details {

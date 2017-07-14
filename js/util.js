@@ -1,11 +1,3 @@
-var woeid = {
-	kl : '1154781',
-	jb: '1154698',
-	ml: '1154903',
-	kc: '91799332',
-	pg: '91799345'
-};
-
 var URL = 'https://query.yahooapis.com/v1/public/yql?q=';
 
 var app = angular.module("weather", []); 	
@@ -16,30 +8,94 @@ app.controller('wController', function($scope,$http) {
     	city: 'kl'
   	};
 
-  	var yql = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where woeid="' + woeid.kl + '") and u="c"';
+  	$scope.cities = {
+  		kl: { woeid: '1154781', name: 'kl', text: 'Kuala Lumpur'},
+  		jb: { woeid: '1154698', name: 'jb', text: 'Johor Baharu'},
+  		ml: { woeid: '1154903', name: 'ml', text: 'Melaka'},
+  		kc: { woeid: '91799332', name: 'kc', text: 'Kuching'},
+  		pg: { woeid: '91799345', name: 'pg', text: 'Penang'}};
+   
 
-  	$http.get(URL+yql+'&format=json').then(function(response) {
+    $scope.getWeatherData = function(w,u) {
 
-        $scope.weatherData = response.data.query.results.channel;
-        console.log($scope.weatherData);
+    	var yql = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where woeid="' + w + '") and u="'+u+'"';
+
+  		$http.get(URL+yql+'&format=json').then(function(response) {
+
+	        $scope.weatherData = response.data.query.results.channel;
+	        console.log($scope.weatherData);
+
+	        $scope.weatherData.astronomy.sunrise = formatTime($scope.weatherData.astronomy.sunrise);
+	        $scope.weatherData.astronomy.sunset = formatTime($scope.weatherData.astronomy.sunset);
+
+	        var link = $scope.weatherData.link;
+	        link = link.split('*')[1];
+	        $scope.weatherData.link = link;
+
+	        $scope.weatherData.item.condition.img = getImgName($scope.weatherData.item.condition.code);
+
+	        for(var i=0; i<$scope.weatherData.item.forecast.length; i++) {
+
+	        	var n = getImgName($scope.weatherData.item.forecast[i].code);
+	           	$scope.weatherData.item.forecast[i].img_name = n;
+	           	$scope.weatherData.item.forecast[i].day = formatDay($scope.weatherData.item.forecast[i].day);
+	        }
         
-        var link = $scope.weatherData.link;
-        link = link.split('*')[1];
-        $scope.attrLink = link;
-        $scope.weatherData.item.condition.img = getImgName($scope.weatherData.item.condition.code);
+    	});
+    }
 
-        for(var i=0; i<$scope.weatherData.item.forecast.length; i++) {
-        	var n = getImgName($scope.weatherData.item.forecast[i].code);
-           	$scope.weatherData.item.forecast[i].img_name = n;
-        }
-        
-    });
+    $scope.updateCity = function(cn) {
+        $scope.getWeatherData($scope.cities[cn].woeid,$scope.temp.unit);
+    };
+
+    $scope.updateTemp = function(u) {
+    	u = u.toLowerCase();
+    	$scope.getWeatherData($scope.cities[$scope.temp.city].woeid,$scope.temp.unit);
+    }
+
+    $scope.getWeatherData($scope.cities.kl.woeid,"c");
     
 });
 
-function initApp(){
+function formatDay(d){
+	var day;
+	d = d.toLowerCase();
+	switch (d) {
+		case 'fri':
+			day = 'Friday';
+			break;
+		case 'sat':
+			day = 'Saturday';
+			break;
+		case 'sun':
+			day = 'Sunday';
+			break;
+		case 'mon':
+			day = 'Monday';
+			break;
+		case 'tue':
+			day = 'Tuesday';
+			break;
+		case 'wed':
+			day = 'Wednesday';
+			break;
+		case 'thu':
+			day = 'Thursday';
+			break;		
+	}
 
+	return day;
+
+}
+
+function formatTime(t){
 	
+	var t = t.split(" ");
+	var c = t[0].split(":");
+	if (c[1].length < 2){
+		c[1] = '0'+c[1];
+	}
+	return c[0]+ ':' +c[1]+' ' +t[1];
 }
 
 function getImgName(c){
