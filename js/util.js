@@ -23,7 +23,7 @@ app.controller('wController', function($scope,$http) {
   		$http.get(URL+yql+'&format=json').then(function(response) {
 
 	        $scope.weatherData = response.data.query.results.channel;
-	        console.log($scope.weatherData);
+	        //console.log($scope.weatherData);
 
 	        $scope.weatherData.astronomy.sunrise = formatTime($scope.weatherData.astronomy.sunrise);
 	        $scope.weatherData.astronomy.sunset = formatTime($scope.weatherData.astronomy.sunset);

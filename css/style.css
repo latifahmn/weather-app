@@ -236,7 +236,11 @@ ul {
     border-top: 1px solid #ddd;
     padding: 15px;
     background: rgba(255,255,255,0.7);	
-}	
+}
+
+.future_data ul li ul:hover {	
+	background: rgba(255,255,255,0.8);	
+}
 
 .future_data ul li ul li:last-child {
 	min-width: 135px;
