@@ -24,8 +24,8 @@ app.controller('wController', function($scope,$http) {
   			$scope.heroStyle = { 'opacity': '0'};
   			$scope.heroStyle = { 'opacity': '1'};
 
+  			$('.hero img').attr("src","");
   			$('.hero img').fadeOut(500, function() {
-  				$('.hero img').attr("src","");
 		        $('.hero img').attr("src","images/"+ $scope.temp.city + ".jpg");
 		        
 		    });
