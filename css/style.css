@@ -19,12 +19,37 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    -webkit-transition: background-image 2s; 
-    -moz-transition: background-image 2s; 
-    transition: background-image 2s;
+    
+}
+
+.hero {
+	position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;    
+}
+
+.hero img {
+	width: 100vw;
+    height: 100vh;
+}
+
+.overlay{
+	background: rgba(92,66,61,0.7);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: background-color 2s; 
+    -moz-transition: background-color 2s; 
+    transition: background-color 2s;
 }
 
 header {
+	position: relative;
+	z-index: 2;
 	background-color: #404040;
 	color: #fff;
 	width: 100%;
@@ -93,18 +118,8 @@ header {
     left: 7px;
 }
 
-.overlay{
-	background: rgba(92,66,61,0.7);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
 .content {
-	
+	position: relative;
 	color: #fff;	
 	width: 100%;
 	display: -webkit-flex;

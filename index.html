@@ -12,11 +12,16 @@
 
 	<script type="text/javascript" src="js/angular.min.js"></script>	
 	<script src="https://use.fontawesome.com/3acf4798fd.js"></script>
+	<script src="js/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="js/util.js" ></script>
 
 	
 </head>
-<body ng-style="{'background-image': 'url(images/'+temp.city+ '.jpg)'}" ng-app="weather" ng-controller="wController">
+<body ng-app="weather" ng-controller="wController">
+
+	<div class="hero"><img alt="{{cities[temp.city].text}}"></div>
+
+	<div class="overlay"></div>
 
 	<header>
 
@@ -41,9 +46,7 @@
 			</ul>
 		</div>
 
-	</header>
-
-	<div class="overlay"></div>
+	</header>	
 
 	<div class="content">
 

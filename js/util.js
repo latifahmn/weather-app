@@ -13,8 +13,7 @@ app.controller('wController', function($scope,$http) {
   		jb: { woeid: '1154698', name: 'jb', text: 'Johor Baharu'},
   		ml: { woeid: '1154903', name: 'ml', text: 'Melaka'},
   		kc: { woeid: '91799332', name: 'kc', text: 'Kuching'},
-  		pg: { woeid: '91799345', name: 'pg', text: 'Penang'}};
-   
+  		pg: { woeid: '91799345', name: 'pg', text: 'Penang'}};   
 
     $scope.getWeatherData = function(w,u) {
 
@@ -22,7 +21,16 @@ app.controller('wController', function($scope,$http) {
 
   		$http.get(URL+yql+'&format=json').then(function(response) {
 
-	        $scope.weatherData = response.data.query.results.channel;
+  			$scope.heroStyle = { 'opacity': '0'};
+  			$scope.heroStyle = { 'opacity': '1'};
+
+  			$('.hero img').fadeOut(500, function() {
+		        $('.hero img').attr("src","images/"+ $scope.temp.city + ".jpg");
+		        
+		    });
+		    $( ".hero img" ).fadeIn( 1000, "linear" );
+
+  			$scope.weatherData = response.data.query.results.channel;
 	        //console.log($scope.weatherData);
 
 	        $scope.weatherData.astronomy.sunrise = formatTime($scope.weatherData.astronomy.sunrise);
@@ -42,9 +50,10 @@ app.controller('wController', function($scope,$http) {
 	        }
         
     	});
+    	
     }
 
-    $scope.updateCity = function(cn) {
+    $scope.updateCity = function(cn) {    	
         $scope.getWeatherData($scope.cities[cn].woeid,$scope.temp.unit);
     };
 
