@@ -257,6 +257,10 @@ ul {
 	background: rgba(255,255,255,0.8);	
 }
 
+.future_data ul li ul li:first-child {
+	margin-right: 5px;
+}
+
 .future_data ul li ul li:last-child {
 	min-width: 135px;
 }
